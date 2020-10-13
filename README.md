@@ -15,8 +15,10 @@ you can also **populate reference fields**
 
 `npm i query-easy --save`
 
-Then...
+#### Then...
 
+
+###### Router
 ```
 import { queryEasy } from 'query-easy'
 const User = import('./path')
@@ -38,6 +40,32 @@ router.route('/)
     )
 ```
 
+###### Controller
+```
+    //Access the .results properties of the res object
+
+    const getRquest = async(req, res, next) => {
+        return res.status(200).json(res.results)
+    }
+
+```
+
+#### Finally!!!!
+
+###### Send your requests
+
+* Supported queryParams are fields of the Outline Model
+* *Select* - Select queryparams is **select**
+* *Sort* - Sort queryparams is **sort**
+* *Pagination* - pagination queryparams are **page** and **limit**
+
+`GET \api\v1\?name=Isaac&age=10&location.state=Lagos`
+
+`GET \api\v1\?select=name,age,location&sort=age`
+
+`GET \api\v1\?page=1&limit=10`
+
+
 ## Options
 
 query-easy supports 3 options
@@ -45,3 +73,4 @@ query-easy supports 3 options
 * *model* - Mongoose Document Model (Required)
 * *customQuery* - **Object** of mongoose queries(Optional)
 * *populateFields* - **Array** of mongoose populate (Optional)
+

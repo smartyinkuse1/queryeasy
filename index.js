@@ -1,13 +1,18 @@
 const queryEasy = (options) => async (req, res, next) => {
     let query
+    let requestQuery
     if (!options.model) {
-        return console.error("Mongoose Model is required");    
+        const err = new Error("Mongoose Model is required at query-easy")
+        console.error(err); 
+        // next(new Error("Mongoose Model is required at query-easy"))
+        return next(err)  
+        
     }
     // Copy req.query and otherQueries
     if (options.customQuery) {
-        const requestQuery = { ...req.query, ...options.customQuery } 
+        requestQuery = { ...req.query, ...options.customQuery } 
     } else {
-        const requestQuery = { ...req.query } 
+        requestQuery = { ...req.query } 
     }
 
     // Fields to exclude
