@@ -58,8 +58,11 @@ router.route('/)
 * *Select* - Select queryparams is **select**
 * *Sort* - Sort queryparams is **sort**
 * *Pagination* - pagination queryparams are **page** and **limit**
+* queries like $gt, $lte are represented with "[gt], [lte]"
 
-`GET \api\v1\?name=Isaac&age=10&location.state=Lagos`
+`GET \api\v1\?name=Isaac&location.state=Lagos`
+
+`GET \api\v1\?age[gte]=5`
 
 `GET \api\v1\?select=name,age,location&sort=age`
 
